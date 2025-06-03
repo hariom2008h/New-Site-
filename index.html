@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HARIOM SINGH | Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #00c6ff;
+      --secondary: #0072ff;
+      --accent: #ff2d75;
+      --dark: #121212;
+      --light: #ffffff;
+      --gray: rgba(255, 255, 255, 0.7);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Poppins', sans-serif;
+      color: var(--light);
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      min-height: 100%;
+      object-fit: cover;
+      z-index: -2;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: -1;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 60px 20px;
+      height: 100%;
+      overflow-y: auto;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 40px 30px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      text-align: center;
+      max-width: 850px;
+      width: 100%;
+      animation: fadeIn 1s ease forwards;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .profile-pic {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--light);
+      margin-bottom: 20px;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .profile-pic:hover {
+      transform: scale(1.05);
+      border-color: var(--primary);
+    }
+
+    h1 {
+      font-size: 2.8em;
+      margin-bottom: 10px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 700;
+    }
+
+    .tagline {
+      font-size: 1.2em;
+      margin-bottom: 25px;
+      color: var(--gray);
+      font-weight: 300;
+    }
+
+    p {
+      font-size: 1.1em;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .info-box {
+      text-align: left;
+      margin-top: 30px;
+      background: rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      border-radius: 15px;
+      border-left: 3px solid var(--primary);
+    }
+
+    .info-box h2 {
+      font-size: 1.6em;
+      margin-bottom: 15px;
+      padding-bottom: 8px;
+      position: relative;
+      color: var(--primary);
+    }
+
+    .info-box h2::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 50px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary), transparent);
+    }
+
+    .info-box ul {
+      list-style: none;
+      padding: 0;
+      line-height: 1.8;
+    }
+
+    .info-box ul li {
+      margin-bottom: 8px;
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .info-box ul li::before {
+      content: "›";
+      color: var(--primary);
+      font-weight: bold;
+      margin-right: 10px;
+      font-size: 1.2em;
+    }
+
+    .skills-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .skill-chip {
+      background: rgba(0, 198, 255, 0.15);
+      padding: 6px 15px;
+      border-radius: 50px;
+      font-size: 0.9em;
+      border: 1px solid rgba(0, 198, 255, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .skill-chip:hover {
+      background: rgba(0, 198, 255, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin: 15px 10px 0;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 50px;
+      color: white;
+      font-size: 1.1em;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      box-shadow: 0 4px 15px rgba(0, 198, 255, 0.4);
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, var(--secondary), var(--primary));
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0, 198, 255, 0.6);
+    }
+
+    .btn-accent {
+      background: linear-gradient(135deg, #ff2d75, #ff6b45);
+      box-shadow: 0 4px 15px rgba(255, 45, 117, 0.4);
+    }
+
+    .btn-accent:hover {
+      background: linear-gradient(135deg, #ff6b45, #ff2d75);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(255, 45, 117, 0.6);
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      margin: 25px 0;
+      gap: 15px;
+    }
+
+    .social-link {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--light);
+      font-size: 1.2em;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .social-link:hover {
+      background: var(--primary);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 198, 255, 0.4);
+    }
+
+    footer {
+      margin-top: 40px;
+      font-size: 0.9em;
+      color: var(--gray);
+      text-align: center;
+    }
+
+    footer a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .container {
+        padding: 40px 15px;
+      }
+      
+      .card {
+        padding: 30px 20px;
+      }
+      
+      h1 {
+        font-size: 2.2em;
+      }
+      
+      .tagline {
+        font-size: 1em;
+      }
+      
+      .info-box {
+        padding: 15px;
+      }
+    }
+
+    /* Animation for skills */
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .floating {
+      animation: float 4s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Video -->
+  <video autoplay muted loop id="bgVideo">
+    <source src="bg.mp4" type="video/mp4" />
+    Your browser does not support HTML5 video.
+  </video>
+  <div class="overlay"></div>
+
+  <!-- Content -->
+  <div class="container">
+    <div class="card">
+      <img src="file.png" alt="HARIOM SINGH" class="profile-pic floating" />
+      <h1>HARIOM SINGH</h1>
+      <p class="tagline">Developer | Designer | Tech Enthusiast</p>
+      <p>Hello! I'm Hariom — a 16-year-old creative developer from India. I specialize in building bots, websites, and Telegram tools. As the owner of ESECH (@ESECHBHADANA), I love creating solutions that combine technology and creativity.</p>
+
+      <div class="social-links">
+        <a href="https://t.me/ESECHBHADANA" class="social-link" target="_blank" title="Telegram">
+          <i class="fab fa-telegram"></i>
+        </a>
+        <a href="https://www.snapchat.com/add/hs.bhadana?share_id=B8YAfpDJApw&locale=en-IN" class="social-link" target="_blank" title="Snapchat">
+          <i class="fab fa-snapchat"></i>
+        </a>
+        <a href="https://github.com/yourusername" class="social-link" target="_blank" title="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://instagram.com/yourusername" class="social-link" target="_blank" title="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+      </div>
+
+      <div class="info-box">
+        <h2>About Me</h2>
+        <ul>
+          <li><strong>Location:</strong> India</li>
+          <li><strong>Age:</strong> 16 years</li>
+          <li><strong>Education:</strong> 11th Grade (Commerce Stream)</li>
+          <li><strong>Interests:</strong> Video Editing, Game Development, UI/UX Design</li>
+          <li><strong>Current Focus:</strong> Enhancing my Python and JavaScript skills</li>
+        </ul>
+      </div>
+
+      <div class="info-box">
+        <h2>Skills & Expertise</h2>
+        <div class="skills-container">
+          <span class="skill-chip">PHP Development</span>
+          <span class="skill-chip">Python Bots</span>
+          <span class="skill-chip">HTML/CSS/JS</span>
+          <span class="skill-chip">Telegram API</span>
+          <span class="skill-chip">UI/UX Design</span>
+          <span class="skill-chip">Web Automation</span>
+          <span class="skill-chip">Video Editing</span>
+          <span class="skill-chip">Graphic Design</span>
+        </div>
+      </div>
+
+      <div class="info-box">
+        <h2>Projects & Achievements</h2>
+        <ul>
+          <li>Created multiple successful Telegram bots with thousands of users</li>
+          <li>Developed automation systems for various online platforms</li>
+          <li>Designed user-friendly interfaces for web applications</li>
+          <li>Owner of growing Telegram channel @ESECHBHADANA</li>
+        </ul>
+      </div>
+
+      <a href="https://t.me/ESECHBHADANA" class="btn btn-primary" target="_blank">
+        <i class="fab fa-telegram" style="margin-right: 8px;"></i> Join My Telegram
+      </a>
+      <a href="https://www.snapchat.com/add/hs.bhadana?share_id=B8YAfpDJApw&locale=en-IN" class="btn btn-accent" target="_blank">
+        <i class="fab fa-snapchat" style="margin-right: 8px;"></i> Add on Snapchat
+      </a>
+    </div>
+
+    <footer>
+      © <span id="year"></span> HARIOM SINGH. All rights reserved. | Made with <i class="fas fa-heart" style="color: var(--accent);"></i> in India
+    </footer>
+  </div>
+
+  <script>
+    // Update copyright year automatically
+    document.getElementById('year').textContent = new Date().getFullYear();
+    
+    // Pause video when tab is not active to save resources
+    document.addEventListener('visibilitychange', function() {
+      const video = document.getElementById('bgVideo');
+      if (document.hidden) {
+        video.pause();
+      } else {
+        video.play();
+      }
+    });
+    
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+</body>
+</html>
